@@ -16,14 +16,14 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"nombre\": \"james\",\r\n    \"apellido\": \"antonio\",\r\n    \"email\": \"luis@gmail.com\"\r\n}",
+							"raw": "{\r\n    \"nombre\": \"luis\",\r\n    \"email\": \"luis@gmail.com\",\r\n    \"password\": \"dsfsdafds\",\r\n    \"telefono\": \"00000000\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
 								}
 							}
 						},
-						"url": "http://localhost:8080/api/usuario"
+						"url": "http://localhost:8080/usuarios"
 					},
 					"response": []
 				},
@@ -32,7 +32,7 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": "http://localhost:8080/api/usuario/1"
+						"url": "http://localhost:8080/usuarios"
 					},
 					"response": []
 				},
@@ -43,14 +43,14 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"idUsuario\": 1,\r\n    \"nombre\": \"james\",\r\n    \"apellido\": \"sipac\",\r\n    \"email\": \"luis@gmail.com\"\r\n}",
+							"raw": "{\r\n    \"email\": \"melisa@gmail.com\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
 								}
 							}
 						},
-						"url": "http://localhost:8080/api/usuario"
+						"url": "http://localhost:8080/usuarios/66f4766ced37cb1d6edb38b6"
 					},
 					"response": []
 				},
@@ -61,14 +61,14 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"idUsuario\": 1,\r\n    \"nombre\": \"james\",\r\n    \"apellido\": \"sipac\",\r\n    \"email\": \"luis@gmail.com\"\r\n}",
+							"raw": "",
 							"options": {
 								"raw": {
 									"language": "json"
 								}
 							}
 						},
-						"url": "http://localhost:8080/api/usuario"
+						"url": "http://localhost:8080/usuarios/66f571297ded841b8c4027d8"
 					},
 					"response": []
 				}
@@ -84,14 +84,14 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"usuarioId\": 1\r\n}",
+							"raw": "{\r\n    \"usuarioId\": \"luis\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
 								}
 							}
 						},
-						"url": "http://localhost:8080/api/reserva"
+						"url": "http://localhost:8080/reservas"
 					},
 					"response": []
 				},
@@ -100,7 +100,7 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": "http://localhost:8080/api/reserva"
+						"url": "http://localhost:8080/reservas"
 					},
 					"response": []
 				},
@@ -111,14 +111,14 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"idReserva\": 1,\r\n        \"usuarioId\": 2,\r\n        \"fechaReserva\": \"2024-09-25T09:16:17.3457801\"\r\n}",
+							"raw": "",
 							"options": {
 								"raw": {
 									"language": "json"
 								}
 							}
 						},
-						"url": "http://localhost:8080/api/reserva"
+						"url": "http://localhost:8080/reservas/66f4814c3d6f70257aa8a1f5"
 					},
 					"response": []
 				},
@@ -129,14 +129,14 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"idReserva\": 1,\r\n    \"usuarioId\": 2\r\n}",
+							"raw": "{\r\n    \"usuarioId\": \"66f4766ced37cb1d6edb38b6\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
 								}
 							}
 						},
-						"url": "http://localhost:8080/api/reserva"
+						"url": "http://localhost:8080/reservas/66f4766ced37cb1d6edb38b6"
 					},
 					"response": []
 				}

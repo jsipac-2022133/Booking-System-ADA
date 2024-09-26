@@ -1,13 +1,12 @@
 package com.jamessipac.bookingSystem.service.usuario;
 
 import com.jamessipac.bookingSystem.model.Usuario;
-
-import java.util.Map;
+import java.util.List;
 
 public interface UsuarioService {
-    Map<Long, Usuario> retornarUsuarios();
-    Usuario consultarUsuarioPorId(Long idUsuario);
-    Usuario guardarUsuario(Usuario usuario);
-    Usuario actualizarUsuario(Usuario usuario);
-    Usuario eliminarUsuario(Usuario usuario);
+    List<Usuario> findAll();
+    Usuario findById(String id);
+    Usuario save(Usuario usuario);
+    Usuario update(String id, Usuario usuario);
+    void deleteById(String id);
 }

@@ -1,31 +1,38 @@
 package com.jamessipac.bookingSystem.model;
 
-import java.io.Serializable;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-public class Usuario implements Serializable {
-    private static final long serialVersionUID=1L;
+import java.time.LocalDateTime;
 
-    private Long idUsuario;
+@Document(collection = "usuarios")
+public class Usuario {
+
+    @Id
+    private String id;
     private String nombre;
-    private String apellido;
     private String email;
+    private String password;
+    private String telefono;
 
     public Usuario() {
     }
 
-    public Usuario(Long idUsuario, String nombre, String apellido, String email) {
-        this.idUsuario = idUsuario;
+    public Usuario(String id, String nombre, String email, String password, String telefono) {
+        this.id = id;
         this.nombre = nombre;
-        this.apellido = apellido;
         this.email = email;
+        this.password = new BCryptPasswordEncoder().encode(password);
+        this.telefono = telefono;
     }
 
-    public Long getIdUsuario() {
-        return idUsuario;
+    public String getId() {
+        return id;
     }
 
-    public void setIdUsuario(Long idUsuario) {
-        this.idUsuario = idUsuario;
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getNombre() {
@@ -36,14 +43,6 @@ public class Usuario implements Serializable {
         this.nombre = nombre;
     }
 
-    public String getApellido() {
-        return apellido;
-    }
-
-    public void setApellido(String apellido) {
-        this.apellido = apellido;
-    }
-
     public String getEmail() {
         return email;
     }
@@ -52,13 +51,21 @@ public class Usuario implements Serializable {
         this.email = email;
     }
 
-    @Override
-    public String toString() {
-        return "Usuario{" +
-                "idUsuario=" + idUsuario +
-                ", nombre='" + nombre + '\'' +
-                ", apellido='" + apellido + '\'' +
-                ", email='" + email + '\'' +
-                '}';
+    public String getPassword() {
+        return password;
     }
+
+    public void setPassword(String password) {
+        // Aplicar cifrado de BCrypt siempre que se cambie la contraseña
+        this.password = new BCryptPasswordEncoder().encode(password);
+    }
+
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
+
 }

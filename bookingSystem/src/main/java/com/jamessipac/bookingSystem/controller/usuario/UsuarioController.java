@@ -2,44 +2,40 @@ package com.jamessipac.bookingSystem.controller.usuario;
 
 import com.jamessipac.bookingSystem.model.Usuario;
 import com.jamessipac.bookingSystem.service.usuario.UsuarioService;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Map;
+import java.util.List;
 
 @RestController
-@RequestMapping("/api/usuario")
+@RequestMapping("/usuarios")
 public class UsuarioController {
 
+    @Autowired
     private UsuarioService usuarioService;
 
-    public UsuarioController(UsuarioService usuarioService) {
-        this.usuarioService = usuarioService;
-    }
-
     @GetMapping
-    public ResponseEntity<Map<Long, Usuario>> retornarUsuarios(){
-        return new ResponseEntity<>(usuarioService.retornarUsuarios(), HttpStatus.OK);
+    public List<Usuario> findAll() {
+        return usuarioService.findAll();
     }
 
     @GetMapping("/{idUsuario}")
-    public ResponseEntity<Usuario> consultarUsuarioPorId(@PathVariable Long idUsuario){
-        return new ResponseEntity<>(usuarioService.consultarUsuarioPorId(idUsuario), HttpStatus.OK);
+    public Usuario findById(@PathVariable String idUsuario) {
+        return usuarioService.findById(idUsuario);
     }
 
     @PostMapping
-    public ResponseEntity<Usuario> crearUsuario(@RequestBody Usuario usuario){
-        return new ResponseEntity<>(usuarioService.guardarUsuario(usuario), HttpStatus.OK);
+    public Usuario save(@RequestBody Usuario usuario) {
+        return usuarioService.save(usuario);
     }
 
-    @PutMapping()
-    public ResponseEntity<Usuario> actualizarUsuario(@RequestBody Usuario usuario){
-        return new ResponseEntity<>(usuarioService.actualizarUsuario(usuario), HttpStatus.OK);
+    @PutMapping("/{idUsuario}")
+    public Usuario update(@PathVariable String idUsuario, @RequestBody Usuario usuario) {
+        return usuarioService.update(idUsuario, usuario);
     }
 
-    @DeleteMapping
-    public ResponseEntity<Usuario> eliminarUsuario(@RequestBody Usuario usuario){
-        return new ResponseEntity<>(usuarioService.eliminarUsuario(usuario), HttpStatus.OK);
+    @DeleteMapping("/{idUsuario}")
+    public void deleteById(@PathVariable String idUsuario) {
+        usuarioService.deleteById(idUsuario);
     }
 }

@@ -1,13 +1,12 @@
 package com.jamessipac.bookingSystem.service.reserva;
 
 import com.jamessipac.bookingSystem.model.Reserva;
-import com.jamessipac.bookingSystem.model.Usuario;
 import com.jamessipac.bookingSystem.repository.reserva.ReservaRepository;
-import com.jamessipac.bookingSystem.service.usuario.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Map;
+import java.time.LocalDateTime;
+import java.util.List;
 
 @Service
 public class ReservaServiceImpl implements ReservaService{
@@ -15,50 +14,33 @@ public class ReservaServiceImpl implements ReservaService{
     @Autowired
     private ReservaRepository reservaRepository;
 
-    private final UsuarioService usuarioService;
-
-    public ReservaServiceImpl(UsuarioService usuarioService) {
-        this.usuarioService = usuarioService;
-    }
-
-
     @Override
-    public Map<Long, Reserva> retornarReservas() {
-        return reservaRepository.retornarReservas();
+    public List<Reserva> findAll() {
+        return reservaRepository.findAll();
     }
 
     @Override
-    public Reserva consultarReservaPorId(Long idReserva) {
-        return reservaRepository.consultarReservaPorId(idReserva);
+    public Reserva findById(String id) {
+        return reservaRepository.findById(id).orElse(null);
     }
 
     @Override
-    public Reserva guardarReserva(Reserva reserva) {
-        Usuario usuario=usuarioService.consultarUsuarioPorId(reserva.getUsuarioId());
-        if(usuario==null){
-            System.out.println("El usuario con id "+reserva.getUsuarioId()+" no existe");;
-        }else{
-            return reservaRepository.guardarReserva(reserva);
+    public Reserva save(Reserva reserva) {
+        reserva.setFechaReserva(LocalDateTime.now());
+        return reservaRepository.save(reserva);
+    }
+
+    @Override
+    public Reserva update(String id, Reserva reserva) {
+        Reserva existingReserva = reservaRepository.findById(id).orElse(null);
+        if(reserva.getUsuarioId()!=null){
+            existingReserva.setUsuarioId(reserva.getUsuarioId());
         }
-
-        return null;
+        return reservaRepository.save(existingReserva);
     }
 
     @Override
-    public Reserva actualiarReserva(Reserva reserva) {
-
-        Usuario usuario=usuarioService.consultarUsuarioPorId(reserva.getUsuarioId());
-        if(usuario==null){
-            System.out.println("El usuario con id "+reserva.getUsuarioId()+" no existe");;
-        }else {
-            return reservaRepository.actualizarReserva(reserva);
-        }
-
-        return null;
-    }
-
-    @Override
-    public Reserva eliminarReserva(Reserva reserva) {
-        return reservaRepository.eliminarReserva(reserva);
+    public void deleteById(String id) {
+        reservaRepository.deleteById(id);
     }
 }

@@ -2,71 +2,40 @@ package com.jamessipac.bookingSystem.controller.reserva;
 
 import com.jamessipac.bookingSystem.model.Reserva;
 import com.jamessipac.bookingSystem.service.reserva.ReservaService;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Map;
+import java.util.List;
 
 @RestController
-@RequestMapping("/api/reserva")
+@RequestMapping("/reservas")
 public class ReservaController {
 
+    @Autowired
     private ReservaService reservaService;
 
-    public ReservaController(ReservaService reservaService) {
-        this.reservaService = reservaService;
-    }
-
     @GetMapping
-    public ResponseEntity<Map<Long, Reserva>> retornarReservas(){
-        return new ResponseEntity<>(reservaService.retornarReservas(), HttpStatus.OK);
+    public List<Reserva> findAll(){
+        return reservaService.findAll();
     }
 
     @GetMapping("/{idReserva}")
-    public ResponseEntity<Reserva> consultarReservaPorId(@PathVariable Long idReserva){
-        return new ResponseEntity<>(reservaService.consultarReservaPorId(idReserva), HttpStatus.OK);
+    public Reserva findById(@PathVariable String idReserva){
+        return reservaService.findById(idReserva);
     }
 
     @PostMapping
-    public ResponseEntity<Reserva> crearReserva(@RequestBody Reserva reserva){
-        return new ResponseEntity<>(reservaService.guardarReserva(reserva), HttpStatus.OK);
+    public Reserva save(@RequestBody Reserva reserva){
+        return reservaService.save(reserva);
     }
 
-    @PutMapping
-    public ResponseEntity<Reserva> actualizarReserva(@RequestBody Reserva reserva){
-        return new ResponseEntity<>(reservaService.actualiarReserva(reserva), HttpStatus.OK);
+    @PutMapping("/{idReserva}")
+    public Reserva update(@PathVariable String idReserva, @RequestBody Reserva reserva){
+        return reservaService.update(idReserva, reserva);
     }
 
-    @DeleteMapping
-    public ResponseEntity<Reserva> eliminarReserva(@RequestBody Reserva reserva){
-        return new ResponseEntity<>(reservaService.eliminarReserva(reserva), HttpStatus.OK);
+    @DeleteMapping("{idReserva}")
+    public void deleteById(@PathVariable String idReserva){
+        reservaService.deleteById(idReserva);
     }
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

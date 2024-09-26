@@ -2,12 +2,12 @@ package com.jamessipac.bookingSystem.service.reserva;
 
 import com.jamessipac.bookingSystem.model.Reserva;
 
-import java.util.Map;
+import java.util.List;
 
 public interface ReservaService {
-    Map<Long, Reserva> retornarReservas();
-    Reserva consultarReservaPorId(Long idReserva);
-    Reserva guardarReserva(Reserva reserva);
-    Reserva actualiarReserva(Reserva reserva);
-    Reserva eliminarReserva(Reserva reserva);
+    List<Reserva> findAll();
+    Reserva findById(String id);
+    Reserva save(Reserva reserva);
+    Reserva update(String id, Reserva reserva);
+    void deleteById(String id);
 }

@@ -1,34 +1,40 @@
 package com.jamessipac.bookingSystem.model;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
 import java.time.LocalDateTime;
 
+@Document(collection = "reservas")
 public class Reserva {
 
-    private Long idReserva;
-    private Long usuarioId;
+    @Id
+    private String id;
+    private String usuarioId;
     private LocalDateTime fechaReserva;
 
+    public Reserva() {
+    }
 
-
-    public Reserva(Long idReserva, Long usuarioId) {
-        this.idReserva = idReserva;
+    public Reserva(String id, String usuarioId, LocalDateTime fechaReserva) {
+        this.id = id;
         this.usuarioId = usuarioId;
-        this.fechaReserva = LocalDateTime.now();
+        this.fechaReserva = fechaReserva;
     }
 
-    public Long getIdReserva() {
-        return idReserva;
+    public String getId() {
+        return id;
     }
 
-    public void setIdReserva(Long idReserva) {
-        this.idReserva = idReserva;
+    public void setId(String id) {
+        this.id = id;
     }
 
-    public Long getUsuarioId() {
+    public String getUsuarioId() {
         return usuarioId;
     }
 
-    public void setUsuarioId(Long usuarioId) {
+    public void setUsuarioId(String usuarioId) {
         this.usuarioId = usuarioId;
     }
 
@@ -39,13 +45,31 @@ public class Reserva {
     public void setFechaReserva(LocalDateTime fechaReserva) {
         this.fechaReserva = fechaReserva;
     }
-
-    @Override
-    public String toString() {
-        return "Reserva{" +
-                "idReserva=" + idReserva +
-                ", usuarioId=" + usuarioId +
-                ", fechaReserva=" + fechaReserva +
-                '}';
-    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
