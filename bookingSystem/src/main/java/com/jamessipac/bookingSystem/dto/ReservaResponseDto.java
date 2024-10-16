@@ -14,7 +14,7 @@ public class ReservaResponseDto {
         this.usuario = usuario;
         this.fechaReserva = fechaReserva;
     }
-    
+
     public String getId() {
         return id;
     }

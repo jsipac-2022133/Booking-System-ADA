@@ -19,6 +19,11 @@ public class AuthService {
     private BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
     public String login(String email, String password) {
+        // Validar si el email o la contraseña son nulos
+        if (email == null || password == null) {
+            throw new RuntimeException("Invalid credentials");
+        }
+
         Usuario usuario = usuarioRepository.findByEmail(email);
 
         if (usuario != null && passwordEncoder.matches(password, usuario.getPassword())) {
@@ -28,4 +33,5 @@ public class AuthService {
             throw new RuntimeException("Invalid credentials");
         }
     }
+
 }
