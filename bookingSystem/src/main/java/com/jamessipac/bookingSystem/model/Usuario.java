@@ -14,7 +14,6 @@ public class Usuario {
     private String id;
     private String nombre;
     private String email;
-    @JsonIgnore  //con esto en el mostarReserva no me muestra password
     private String password;
     private String telefono;
 
